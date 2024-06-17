@@ -19,7 +19,6 @@
     "require": {
         "php": ">=8",
         "nesbot/carbon": ">=2",
-        "fzaninotto/faker": ">=1",
         "symfony/property-access": ">=6",
         "symfony/config": ">=6",
         "symfony/string": ">=6",
@@ -56,12 +55,17 @@
         "symfony/validator": ">=6",
         "symfony/web-link": ">=6",
         "symfony/webpack-encore-bundle": ">=2",
-		"grin-symfony/service-bundle": ">=1.0"
+		"grin-symfony/service-bundle": ">=1.0",
+        "fzaninotto/faker": "dev-bugfix"
     },
 	"repositories": [
 		{
 			"type": "path",
 			"url": "./bundles/grin-symfony/service-bundle"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/grin-symfony/Faker.git"
 		}
 	]
 }
