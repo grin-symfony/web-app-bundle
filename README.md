@@ -1,4 +1,4 @@
-green-symfony/web-app-bundle
+grin-symfony/web-app-bundle
 ========
 
 # Description
@@ -6,8 +6,8 @@ green-symfony/web-app-bundle
 This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate):
 | FQCN |
 | ------------- |
-| [\GS\WebApp\Trait\Doctrine\UpdatedAt](https://github.com/green-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/UpdatedAt.php) |
-| [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/green-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
+| [\GS\WebApp\Trait\Doctrine\UpdatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/UpdatedAt.php) |
+| [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
 
 # Installation
 
@@ -17,22 +17,22 @@ In your `%kernel.project_dir%/composer.json`
 
 ```json
 "require": {
-	"green-symfony/web-app-bundle": "VERSION"
+	"grin-symfony/web-app-bundle": "VERSION"
 },
 "repositories": [
 	{
 		"type": "path",
-		"url": "./bundles/green-symfony/web-app-bundle"
+		"url": "./bundles/grin-symfony/web-app-bundle"
 	}
 ]
 ```
 
 ### Step 2: Download the bundle
 
-### [Before git clone](https://github.com/green-symfony/docs/blob/main/docs/bundles_green_symfony%20mkdir.md)
+### [Before git clone](https://github.com/grin-symfony/docs/blob/main/docs/bundles_grin_symfony%20mkdir.md)
 
 ```console
-git clone "https://github.com/green-symfony/web-app-bundle.git"
+git clone "https://github.com/grin-symfony/web-app-bundle.git"
 ```
 
 ```console
@@ -40,10 +40,10 @@ cd "../../"
 ```
 
 ```console
-composer require "green-symfony/web-app-bundle"
+composer require "grin-symfony/web-app-bundle"
 ```
 
-### [Binds](https://github.com/green-symfony/docs/blob/main/docs/borrow-services.yaml-section.md)
+### [Binds](https://github.com/grin-symfony/docs/blob/main/docs/borrow-services.yaml-section.md)
 
 ### Step 3: Usage
 

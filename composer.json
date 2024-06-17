@@ -1,5 +1,5 @@
 {
-    "name": "green-symfony/web-app-bundle",
+    "name": "grin-symfony/web-app-bundle",
     "autoload": {
         "psr-4": {
             "GS\\WebApp\\": "src/"
@@ -14,7 +14,7 @@
 			"email":		"son5-29@mail.ru"
         }
     ],
-    "keywords": ["green-symfony", "web-app-bundle"],
+    "keywords": ["grin-symfony", "web-app-bundle"],
     "license": "MIT",
     "require": {
         "php": ">=8",
@@ -56,12 +56,12 @@
         "symfony/validator": ">=6",
         "symfony/web-link": ">=6",
         "symfony/webpack-encore-bundle": ">=2",
-		"green-symfony/service-bundle": ">=1.0"
+		"grin-symfony/service-bundle": ">=1.0"
     },
 	"repositories": [
 		{
 			"type": "path",
-			"url": "./bundles/green-symfony/service-bundle"
+			"url": "./bundles/grin-symfony/service-bundle"
 		}
 	]
 }
