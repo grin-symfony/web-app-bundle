@@ -1,0 +1,26 @@
+parameters:
+    ###> DEFAULT ###
+    gs_web_app.doctrine:
+        pre_persist_for_created_at_event_listener:
+            is_listen: true
+            priority: 0
+            connection: 'default'
+        pre_update_for_updated_at_event_listener:
+            is_listen: true
+            priority: 0
+            connection: 'default'
+    ###< DEFAULT ###
+
+services:
+    _defaults:
+        public:             false
+        autowire:           false
+        autoconfigure:      false
+        
+        bind:
+            
+            ###> VALUES ###
+            ###< VALUES ###
+            
+            ###> SERVICES ###
+            ###< SERVICES ###
