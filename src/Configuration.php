@@ -10,9 +10,7 @@ use GS\WebApp\GSWebAppExtension;
 
 class Configuration implements ConfigurationInterface
 {
-    public function __construct(
-		private readonly array $doctrine,
-	) {}
+    public function __construct() {}
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -30,9 +28,11 @@ class Configuration implements ConfigurationInterface
 			
 				->arrayNode(GSWebAppExtension::DOCTRINE_NODE_NAME)
                     ->info('Doctrine event listeners')
+					->addDefaultsIfNotSet()
 					->children()
 					
 						->arrayNode(GSWebAppExtension::PRE_PERSIST_FOR_CREATED_AT_EVENT_LISTENER_NODE_NAME)
+						->addDefaultsIfNotSet()
 							->children()
 								->booleanNode(GSWebAppExtension::IS_LISTEN_NODE_NAME)
 									->info('Do listen to pre persist for setting created at?')
@@ -50,6 +50,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
 						
 						->arrayNode(GSWebAppExtension::PRE_PERSIST_FOR_UPDATED_AT_EVENT_LISTENER_NODE_NAME)
+						->addDefaultsIfNotSet()
 							->children()
 								->booleanNode(GSWebAppExtension::IS_LISTEN_NODE_NAME)
 									->info('Do listen to pre update for setting updated at?')

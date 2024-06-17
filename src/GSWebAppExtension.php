@@ -44,7 +44,6 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
             [
                 ['config', 'services.yaml'],
                 ['config/packages', 'translation.yaml'],
-                ['config/packages', 'gs_web_app.yaml'],
             ],
         );
     }
@@ -53,14 +52,7 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
         array $config,
         ContainerBuilder $container,
     ) {
-        return new Configuration(
-			doctrine: $container->getParameter(
-				ServiceContainer::getParameterName(
-					self::PREFIX,
-					self::DOCTRINE_NODE_NAME,
-				)
-			),
-		);
+        return new Configuration;
     }
 
     public function loadInternal(array $config, ContainerBuilder $container): void

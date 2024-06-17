@@ -68,32 +68,15 @@ class YourEntity {
 
 ```
 
-You can configure the behaviour of the listeners in `%kernel.project_dir%/config/services.yaml%`:
-
-```yaml
-parameters:
-    ###> GS\WebApp ###
-    gs_web_app.doctrine:
-        pre_persist_for_created_at_event_listener:
-            is_listen: true
-            priority: 0
-            connection: 'default'
-        pre_update_for_updated_at_event_listener:
-            is_listen: true
-            priority: 0
-            connection: 'default'
-    ###< GS\WebApp ###
-```
-
-Or configure with bundle overriding `%kernel.project_dir%/config/packages/gs_web_app.yaml%`:
+You can configure the behaviour of the bundle in the `%kernel.project_dir%/config/packages/gs_web_app.yaml%`:
 
 ```yaml
 gs_web_app:
     
     doctrine:
         pre_persist_for_created_at_event_listener:
-            is_listen: true
-            priority: 0
+            is_listen: false
+            priority: 110
             connection: 'default'
         pre_update_for_updated_at_event_listener:
             is_listen: true
