@@ -1,2 +1,4 @@
+###> EXAMPLE ###
+
 gs_web_app:
     doctrine: '%gs_web_app.doctrine%'

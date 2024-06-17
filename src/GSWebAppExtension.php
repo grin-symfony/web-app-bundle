@@ -43,7 +43,6 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
 			__DIR__ . '/..',
             [
                 ['config', 'services.yaml'],
-                ['config/packages', 'translation.yaml'],
             ],
         );
     }
