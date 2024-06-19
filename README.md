@@ -3,11 +3,47 @@ grin-symfony/web-app-bundle
 
 # Description
 
-This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate):
+This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
+------
+
 | FQCN |
 | ------------- |
 | [\GS\WebApp\Trait\Doctrine\UpdatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/UpdatedAt.php) |
 | [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
+
+Deploy
+------
+
+Execute in your `%kernel.project_dir%`:
+
+```console
+php bin/console a:i
+```
+
+As you can see some files were appeared by the path:
+`%kernel.project_dir%/public/bundles/gswebapp`
+
+Execute in your app:
+```console
+cp "./public/bundles/gswebapp/deploy" "./public/deploy" -pr
+```
+
+### SEE AND CHANGE THE CONTENT OF THE FILES IF YOU NEED IT: `%kernel.project_dir%/public/deploy/*`
+
+Create `%kernel.project_dir%/init.sh` by executing:
+```console
+echo 'bash "./public/deploy/install-bundles.sh"' > "./init.sh"
+```
+
+Execute for initialization your bundles:
+```console
+bash "./init.sh"
+```
+
+Alternatively, do the same:
+```console
+./init.sh
+```
 
 # Installation
 
