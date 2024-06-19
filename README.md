@@ -35,7 +35,9 @@ Create `%kernel.project_dir%/init.sh` by executing:
 echo 'bash "./public/deploy/install-bundles.sh"' > "./init.sh"
 ```
 
-Execute for initialization your bundles:
+### ALWAYS EXECUTE ./init.sh FROM `%kernel.project_dir%`
+Execute for initialization your bundles
+It'll help you to install all the bundles you described in the `%kernel.project_dir%/public/deploy/install-bundles.sh`
 ```console
 bash "./init.sh"
 ```
