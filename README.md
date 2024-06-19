@@ -1,13 +1,7 @@
 grin-symfony/web-app-bundle
 ========
 
-# Description
-
-This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate):
-| FQCN |
-| ------------- |
-| [\GS\WebApp\Trait\Doctrine\UpdatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/UpdatedAt.php) |
-| [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
+This bundle was created for Symfony Web applications as a helper
 
 # Installation
 
@@ -45,7 +39,19 @@ composer require "grin-symfony/web-app-bundle"
 
 ### [Binds](https://github.com/grin-symfony/docs/blob/main/docs/borrow-services.yaml-section.md)
 
-### Step 3: Usage
+
+# First view
+
+This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
+------
+
+| FQCN |
+| ------------- |
+| [\GS\WebApp\Trait\Doctrine\UpdatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/UpdatedAt.php) |
+| [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
+
+
+# Usage
 
 Use CreatedAt and UpdatedAt traits
 ------
