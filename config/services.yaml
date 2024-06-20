@@ -1,5 +1,7 @@
 parameters:
     ###> DEFAULT ###
+    
+    ###> DOCTRINE ###
     gs_web_app.doctrine:
         pre_persist_for_created_at_event_listener:
             is_listen: true
@@ -9,6 +11,16 @@ parameters:
             is_listen: true
             priority: 0
             connection: 'default'
+    ###< DOCTRINE ###
+
+    ###> MESSENGER ###
+    gs_web_app.messenger:
+        transports:
+            gs_web_app.sync: 'sync://'
+        routing:
+            'GS\WebApp\Contract\Messenger\QueryInterface': gs_web_app.sync
+    ###< MESSENGER ###
+
     ###< DEFAULT ###
 
 services:

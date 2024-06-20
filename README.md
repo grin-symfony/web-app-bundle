@@ -39,11 +39,12 @@ composer require "grin-symfony/web-app-bundle"
 
 ### [Binds](https://github.com/grin-symfony/docs/blob/main/docs/borrow-services.yaml-section.md)
 
+# Usage
 
-# First view
+Traits
+------
 
 This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
-------
 
 | FQCN |
 | ------------- |
@@ -51,27 +52,24 @@ This bundle provides ready to use traits for Doctrine (also listen prePersist an
 | [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
 
 
-# Usage
-
 Use CreatedAt and UpdatedAt traits
-------
 
 ```php
+<?php
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: YourEntityRepository::class)]
-class YourEntity {
+class YourEntity
+{
+    // PrePersistEventLisener OF THIS BUNDLE WILL EXECUTE setCreatedAt METHOD FOR YOU
+    use \GS\WebApp\Trait\Doctrine\UpdatedAt;
 
-	// PrePersistEventLisener OF THIS BUNDLE WILL EXECUTE setCreatedAt METHOD FOR YOU
-	use \GS\WebApp\Trait\Doctrine\UpdatedAt;
+    // PreUpdateEventLisener OF THIS BUNDLE WILL EXECUTE setUpdatedAt METHOD FOR YOU
+    use \GS\WebApp\Trait\Doctrine\CreatedAt;
 
-	// PreUpdateEventLisener OF THIS BUNDLE WILL EXECUTE setUpdatedAt METHOD FOR YOU
-	use \GS\WebApp\Trait\Doctrine\CreatedAt;
-	
-	//...
+    //...
 }
-
 ```
 
 You can configure the behaviour of the bundle in the `%kernel.project_dir%/config/packages/gs_web_app.yaml%`:
@@ -102,6 +100,74 @@ Or
 php bin/console config:dump-reference gs_web_app
 ```
 
+Usage of service: gs_web_app.messenger.query
+------
 
+In your `%kernel.project_dir%/config/services.yaml`
 
+```yaml
+services:
+    _defaults:
+        bind:
+            $get: '@gs_web_app.messenger.query'
+```
 
+```php
+<?php
+
+// File with Message
+
+namespace App\Messenger\<Topic>\Query;
+
+// Implementing that says that this message has 'sync://' transport
+use GS\WebApp\Contract\Messenger\QueryInterface;
+
+class < MessageName > implements QueryInterface
+{
+    //...
+}
+```
+
+```php
+<?php
+
+// File with MessageHandler
+
+namespace App\Messenger\Test\Query;
+
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+#[AsMessageHandler]
+class ListUsersHandler
+{
+    public function __construct(
+        protected readonly < MyServiceClass > $myService,
+    ) {
+    }
+
+    public function __invoke( < MessageName > $query): mixed
+    {
+        return $this->myService->doSomething();
+    }
+}
+```
+
+```php
+
+// File Controller or Service where you dispatch your message
+
+use App\Messenger\<Topic>\Query\<MessageName>;
+//use ...
+
+class HomeController
+{
+    #[Route(path: '/')]
+    public function home(
+        $get,
+    ): Response {
+
+        // Gets the result of your handler
+        $resultOfYourHandler = $get(new() < MessageName >);
+    }
+}
+```

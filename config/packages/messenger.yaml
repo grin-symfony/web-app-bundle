@@ -1,0 +1,2 @@
+framework:
+    messenger: '%gs_web_app.messenger%'
