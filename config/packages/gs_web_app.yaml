@@ -1,2 +1,3 @@
 gs_web_app:
-    doctrine: '%gs_web_app.doctrine%'
+    doctrine:     '%gs_web_app.doctrine%'
+    messenger:    '%gs_web_app.messenger%'

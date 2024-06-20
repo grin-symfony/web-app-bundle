@@ -38,4 +38,12 @@ class GSWebAppBundle extends Bundle
 
         return $this->extension;
     }
+	
+	public function loadExtension(
+		array $config,
+		ContainerConfigurator $container,
+		ContainerBuilder $builder,
+	): void {
+		
+	}
 }

@@ -17,6 +17,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use GS\WebApp\EventListener\Doctrine\PreUpdateEventLisener;
 use GS\WebApp\EventListener\Doctrine\PrePersistEventLisener;
+use GS\WebApp\Service\Messenger\Query;
+use GS\WebApp\Contract\Messenger\QueryInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class GSWebAppExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
@@ -28,6 +31,8 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
 	public const IS_LISTEN_NODE_NAME = 'is_listen';
 	public const PRIORITY_NODE_NAME = 'priority';
 	public const CONNECTION_NODE_NAME = 'connection';
+
+	public const MESSENGER_QUERY_NAME = 'messenger.query';
 	
     public function __construct() {}
 
@@ -43,6 +48,7 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
 			__DIR__ . '/..',
             [
                 ['config', 'services.yaml'],
+                ['config/packages', 'messenger.yaml'],
             ],
         );
     }
@@ -131,33 +137,51 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
 		
 		foreach([
 			[
-				PrePersistEventLisener::class,
-				PrePersistEventLisener::class,
-				$prePersistTag,
-				false,
-				false,
-				false,
+				'id' => PrePersistEventLisener::class,
+				'class' => PrePersistEventLisener::class,
+				'args' => [],
+				'tags' => $prePersistTag,
+				'isAutowired' => false,
+				'isAutoconfigured' => false,
+				'isAbstract' => false,
 			],
 			[
-				PreUpdateEventLisener::class,
-				PreUpdateEventLisener::class,
-				$preUpdateTag,
-				false,
-				false,
-				false,
+				'id' => PreUpdateEventLisener::class,
+				'class' => PreUpdateEventLisener::class,
+				'args' => [],
+				'tags' => $preUpdateTag,
+				'isAutowired' => false,
+				'isAutoconfigured' => false,
+				'isAbstract' => false,
+			],
+			[
+				'id' => ServiceContainer::getParameterName(
+					self::PREFIX,
+					self::MESSENGER_QUERY_NAME
+				),
+				'class' => Query::class,
+				'args' => [
+					'$messageBus' => new Reference('messenger.bus.default'),
+				],
+				'tags' => [],
+				'isAutowired' => false,
+				'isAutoconfigured' => false,
+				'isAbstract' => false,
 			],
 		] as [
-			$id,
-			$class,
-			$tags,
-			$isAutowired,
-			$isAutoconfigured,
-			$isAbstract,
+			'id' => $id,
+			'class' => $class,
+			'args' => $args,
+			'tags' => $tags,
+			'isAutowired' => $isAutowired,
+			'isAutoconfigured' => $isAutoconfigured,
+			'isAbstract' => $isAbstract,
 		]) {
 			$container
 				->setDefinition(
 					$id,
 					(new Definition($class))
+						->setArguments($args)
 						->setTags($tags)
 						->setAutowired($isAutowired)
 						->setAutoconfigured($isAutoconfigured)
@@ -168,13 +192,13 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
 		}
     }
 
-    private function setContainerTags(ContainerBuilder $container)
+    private function setContainerTags(ContainerBuilder $container): void
     {
-        /*
+		/*
         $container
-            ->registerForAutoconfiguration(\GS\Service\<>Interface::class)
-            ->addTag(GSTag::<>)
+            ->registerForAutoconfiguration(<interface>::class)
+			->addTag('messenger.message_handler')
         ;
-        */
+		*/
     }
 }
