@@ -44,7 +44,7 @@ composer require "grin-symfony/web-app-bundle"
 Traits
 ------
 
-### This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
+This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
 
 | FQCN |
 | ------------- |
@@ -52,7 +52,7 @@ Traits
 | [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
 
 
-### Use CreatedAt and UpdatedAt traits
+Use CreatedAt and UpdatedAt traits
 
 ```php
 
