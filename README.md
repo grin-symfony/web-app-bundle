@@ -55,21 +55,21 @@ This bundle provides ready to use traits for Doctrine (also listen prePersist an
 Use CreatedAt and UpdatedAt traits
 
 ```php
+<?php
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: YourEntityRepository::class)]
-class YourEntity {
+class YourEntity
+{
+    // PrePersistEventLisener OF THIS BUNDLE WILL EXECUTE setCreatedAt METHOD FOR YOU
+    use \GS\WebApp\Trait\Doctrine\UpdatedAt;
 
-	// PrePersistEventLisener OF THIS BUNDLE WILL EXECUTE setCreatedAt METHOD FOR YOU
-	use \GS\WebApp\Trait\Doctrine\UpdatedAt;
+    // PreUpdateEventLisener OF THIS BUNDLE WILL EXECUTE setUpdatedAt METHOD FOR YOU
+    use \GS\WebApp\Trait\Doctrine\CreatedAt;
 
-	// PreUpdateEventLisener OF THIS BUNDLE WILL EXECUTE setUpdatedAt METHOD FOR YOU
-	use \GS\WebApp\Trait\Doctrine\CreatedAt;
-	
-	//...
+    //...
 }
-
 ```
 
 You can configure the behaviour of the bundle in the `%kernel.project_dir%/config/packages/gs_web_app.yaml%`:
@@ -117,13 +117,14 @@ services:
 
 // File with Message
 
-namespace App\Messenger\<Topic>\Query;
+namespace App\Messenger\ < Topic > \Query;
 
 // Implementing that says that this message has 'sync://' transport
 use GS\WebApp\Contract\Messenger\QueryInterface;
 
-class <MessageName> implements QueryInterface {
-	//...
+class < MessageName > implements QueryInterface
+{
+    //...
 }
 ```
 
@@ -137,34 +138,36 @@ namespace App\Messenger\Test\Query;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class ListUsersHandler {
-	
-	public function __construct(
-		protected readonly <MyServiceClass> $myService,
-	) {}
-	
-	public function __invoke(<MessageName> $query): mixed {
-		return $this->myService->doSomething();
-	}
-	
+class ListUsersHandler
+{
+    public function __construct(
+        protected readonly < MyServiceClass > $myService,
+    ) {
+    }
+
+    public function __invoke( < MessageName > $query): mixed
+    {
+        return $this->myService->doSomething();
+    }
 }
 ```
 
 ```php
+
 // File Controller or Service where you dispatch your message
 
-use App\Messenger\<Topic>\Query\<MessageName>;
+use App\Messenger\ < Topic > \Query\ < MessageName > ;
 //use ...
 
-class HomeController {
-	#[Route(path: '/')]
+class HomeController
+{
+    #[Route(path: '/')]
     public function home(
-		$get,
+        $get,
     ): Response {
 
-		// Gets the result of your handler
-		$resultOfYourHandler = $get(new <MessageName>);
-		
-	}
+        // Gets the result of your handler
+        $resultOfYourHandler = $get(new() < MessageName >);
+    }
 }
 ```

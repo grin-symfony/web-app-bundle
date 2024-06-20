@@ -3,6 +3,8 @@
 namespace GS\WebApp\Contract\Messenger;
 
 /*
-	This message has the 'sync://' transport
+    This message has the 'sync://' transport
 */
-interface QueryInterface {}
+interface QueryInterface
+{
+}
