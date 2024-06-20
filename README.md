@@ -39,13 +39,12 @@ composer require "grin-symfony/web-app-bundle"
 
 ### [Binds](https://github.com/grin-symfony/docs/blob/main/docs/borrow-services.yaml-section.md)
 
-Usage
+# Usage
+
+Traits
 ------
 
-# Traits
-
-This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
-------
+### This bundle provides ready to use traits for Doctrine (also listen prePersist and preUpdate)
 
 | FQCN |
 | ------------- |
@@ -53,7 +52,7 @@ This bundle provides ready to use traits for Doctrine (also listen prePersist an
 | [\GS\WebApp\Trait\Doctrine\CreatedAt](https://github.com/grin-symfony/web-app-bundle/blob/main/src/Trait/Doctrine/CreatedAt.php) |
 
 
-## Use CreatedAt and UpdatedAt traits
+### Use CreatedAt and UpdatedAt traits
 
 ```php
 
@@ -101,7 +100,8 @@ Or
 php bin/console config:dump-reference gs_web_app
 ```
 
-# Usage of service: gs_web_app.messenger.query
+Usage of service: gs_web_app.messenger.query
+------
 
 In your `%kernel.project_dir%/config/services.yaml`
 
