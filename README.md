@@ -117,7 +117,7 @@ services:
 
 // File with Message
 
-namespace App\Messenger\ < Topic > \Query;
+namespace App\Messenger\<Topic>\Query;
 
 // Implementing that says that this message has 'sync://' transport
 use GS\WebApp\Contract\Messenger\QueryInterface;
@@ -156,7 +156,7 @@ class ListUsersHandler
 
 // File Controller or Service where you dispatch your message
 
-use App\Messenger\ < Topic > \Query\ < MessageName > ;
+use App\Messenger\<Topic>\Query\<MessageName>;
 //use ...
 
 class HomeController
