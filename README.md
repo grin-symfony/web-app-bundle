@@ -80,7 +80,7 @@ gs_web_app:
     doctrine:
         pre_persist_for_created_at_event_listener:
             is_listen: false
-            priority: 110
+            priority: 10
             connection: 'default'
         pre_update_for_updated_at_event_listener:
             is_listen: true
