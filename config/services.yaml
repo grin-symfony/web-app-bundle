@@ -15,6 +15,16 @@ parameters:
 
     ###> MESSENGER ###
     gs_web_app.messenger:
+        buses:
+            ###> BUS FOR QUERY ###
+            gs_web_app.messenger.query.bus:
+                default_middleware: false
+                middleware:
+                    -   id:     'add_bus_name_stamp_middleware'
+                        arguments:
+                        -   'gs_web_app.messenger.query.bus'
+                    -   id:     'handle_message'
+            ###< BUS FOR QUERY ###
         transports:
             gs_web_app.sync: 'sync://'
         routing:

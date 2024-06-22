@@ -168,7 +168,7 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
                 ),
                 'class' => Query::class,
                 'args' => [
-                    '$messageBus' => new Reference('messenger.bus.default'),
+                    '$messageBus' => new Reference('gs_web_app.messenger.query.bus'),
                 ],
                 'tags' => [],
                 'isAutowired' => false,

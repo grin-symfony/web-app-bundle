@@ -109,6 +109,7 @@ In your `%kernel.project_dir%/config/services.yaml`
 services:
     _defaults:
         bind:
+            # USES NOT DEFAULT BUS: gs_web_app.messenger.query.bus
             $get: '@gs_web_app.messenger.query'
 ```
 
@@ -122,7 +123,7 @@ namespace App\Messenger\<Topic>\Query;
 // Implementing that says that this message has 'sync://' transport
 use GS\WebApp\Contract\Messenger\QueryInterface;
 
-class < MessageName > implements QueryInterface
+class <MessageName> implements QueryInterface
 {
     //...
 }
@@ -167,7 +168,7 @@ class HomeController
     ): Response {
 
         // Gets the result of your handler
-        $resultOfYourHandler = $get(new() < MessageName >);
+        $resultOfYourHandler = $get(new <MessageName>);
     }
 }
 ```
