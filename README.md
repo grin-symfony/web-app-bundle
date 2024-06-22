@@ -138,7 +138,9 @@ namespace App\Messenger\Test\Query;
 
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[AsMessageHandler(
+    bus: 'gs_web_app.messenger.query.bus',
+)]
 class ListUsersHandler
 {
     public function __construct(
