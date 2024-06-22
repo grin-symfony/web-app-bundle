@@ -6,13 +6,14 @@ use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use GS\WebApp\Contract\Messenger\QueryInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use GS\WebApp\Type\Messenger\BusTypes;
 
 class Query
 {
     use HandleTrait;
 
     public function __construct(
-		#[Autowire(service: 'gs_web_app.messenger.query.bus')]
+		#[Autowire(service: BusTypes::QUERY_BUS)]
         private MessageBusInterface $messageBus,
     ) {
     }

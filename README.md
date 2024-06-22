@@ -109,7 +109,7 @@ In your `%kernel.project_dir%/config/services.yaml`
 services:
     _defaults:
         bind:
-            # USES NOT DEFAULT BUS: gs_web_app.messenger.query.bus
+            # USES NOT DEFAULT BUS: \GS\WebApp\Type\Messenger\BusTypes::QUERY_BUS
             $get: '@gs_web_app.messenger.query'
 ```
 
@@ -137,18 +137,19 @@ class <MessageName> implements QueryInterface
 namespace App\Messenger\Test\Query;
 
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use GS\WebApp\Type\Messenger\BusTypes;
 
 #[AsMessageHandler(
-    bus: 'gs_web_app.messenger.query.bus',
+    bus: BusTypes::QUERY_BUS,
 )]
 class ListUsersHandler
 {
     public function __construct(
-        protected readonly < MyServiceClass > $myService,
+        protected readonly <MyServiceClass> $myService,
     ) {
     }
 
-    public function __invoke( < MessageName > $query): mixed
+    public function __invoke(<MessageName> $query): mixed
     {
         return $this->myService->doSomething();
     }

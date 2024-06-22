@@ -20,6 +20,7 @@ use GS\WebApp\EventListener\Doctrine\PrePersistEventLisener;
 use GS\WebApp\Service\Messenger\Query;
 use GS\WebApp\Contract\Messenger\QueryInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use GS\WebApp\Type\Messenger\BusTypes;
 
 class GSWebAppExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
@@ -168,7 +169,7 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
                 ),
                 'class' => Query::class,
                 'args' => [
-                    '$messageBus' => new Reference('gs_web_app.messenger.query.bus'),
+                    '$messageBus' => new Reference(BusTypes::QUERY_BUS),
                 ],
                 'tags' => [],
                 'isAutowired' => false,
@@ -203,8 +204,10 @@ class GSWebAppExtension extends ConfigurableExtension implements PrependExtensio
     {
         /*
         $container
-            ->registerForAutoconfiguration(<interface>::class)
-            ->addTag('messenger.message_handler')
+            ->registerForAutoconfiguration('')
+            ->addTag('messenger.message_handler', [
+				'bus' => BusTypes::QUERY_BUS,
+			])
         ;
         */
     }
