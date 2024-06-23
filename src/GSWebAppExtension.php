@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use GS\WebApp\EventListener\Doctrine\PreUpdateEventLisener;
 use GS\WebApp\EventListener\Doctrine\PrePersistEventLisener;
 use GS\WebApp\Service\Messenger\Query;
-use GS\WebApp\Contract\Messenger\QueryInterface;
+use GS\WebApp\Contract\Messenger\HasSyncTransportInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use GS\WebApp\Type\Messenger\BusTypes;
 

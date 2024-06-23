@@ -121,9 +121,9 @@ services:
 namespace App\Messenger\<Topic>\Query;
 
 // Implementing that says that this message has 'sync://' transport
-use GS\WebApp\Contract\Messenger\QueryInterface;
+use GS\WebApp\Contract\Messenger\HasSyncTransportInterface;
 
-class <MessageName> implements QueryInterface
+class <MessageName> implements HasSyncTransportInterface
 {
     //...
 }

@@ -28,7 +28,7 @@ parameters:
         transports:
             gs_web_app.sync: 'sync://'
         routing:
-            'GS\WebApp\Contract\Messenger\QueryInterface': gs_web_app.sync
+            'GS\WebApp\Contract\Messenger\HasSyncTransportInterface': gs_web_app.sync
     ###< MESSENGER ###
 
     ###< DEFAULT ###
